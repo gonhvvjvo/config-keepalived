@@ -1,1 +1,1 @@
-# config-keepalived
+# config-keepalived & script check
