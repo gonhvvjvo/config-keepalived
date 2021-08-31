@@ -1,0 +1,25 @@
+vrrp_script chk_script {
+  script       "/etc/keepalived/check_container.sh"
+  interval 2   # check every 2 seconds
+  fall 2       # require 2 failures for KO
+  rise 2       # require 2 successes for OK
+}
+
+vrrp_instance VI_1 {
+
+        state BACKUP
+        interface ens192
+        virtual_router_id 51
+        priority 254
+        advert_int 1
+        authentication {
+              auth_type PASS
+              auth_pass ZB8ZCR24LN8B
+        }
+        virtual_ipaddress {
+              10.205.13.63/23
+        }
+        track_script {
+          chk_script
+        }
+}
